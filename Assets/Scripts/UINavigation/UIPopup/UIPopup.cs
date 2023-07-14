@@ -8,27 +8,43 @@ using uinavigation.uiview;
 
 namespace uinavigation.popup
 {
+    /// <summary>
+    /// UIPopup 클래스입니다.
+    /// </summary>
     public class UIPopup : MonoBehaviour
     {
+        [Header("UI Components")]
         [SerializeField] protected CanvasGroup _contentCanvasGroup;
         [SerializeField] protected CanvasGroup _backgroundCanvasGroup;
-        [SerializeField] protected float _animDuration = 1f;
+        [SerializeField] protected float _showAnimDuration = 1f;
+        [SerializeField] protected float _hideAnimDuration = 1f;
         [SerializeField] protected bool _setHideFuncToLastButton;
 
-        [Header("UI Components")]
-
+        [Header("Data Binding Components")]
         [Tooltip("동적으로 Text 내용을 할당할 TMP TextField List입니다.")]
         [SerializeField] private List<TextMeshProUGUI> _textFields;
-        public List<TextMeshProUGUI> TextFields => _textFields;
-
         [Tooltip("동적으로 Listener를 할당할 Button List입니다.")]
         [SerializeField] private List<Button> _buttons;
+
+        /// <summary>
+        /// 동적으로 Text 내용을 할당할 TMP TextField List입니다.
+        /// </summary>
+        public List<TextMeshProUGUI> TextFields => _textFields;
+        /// <summary>
+        /// 동적으로 Listener를 할당할 Button List입니다.
+        /// </summary>
         public List<Button> Buttons => _buttons;
 
         private static UIPopup _instance;
         public static UIPopup Instance => _instance;
+        /// <summary>
+        /// Popup의 VisibleState.
+        /// </summary>
         public VisibleState VisibleState { get; private set; } = VisibleState.Disappeared;
         private UIView _view;
+        /// <summary>
+        /// 현재 Popup의 UIView.
+        /// </summary>
         public UIView View
         {
             get => _view;
@@ -40,6 +56,11 @@ namespace uinavigation.popup
             }
         }
 
+        /// <summary>
+        /// UIPopup을 Container로부터 얻어와, Instantiate합니다.
+        /// </summary>
+        /// <param name="name">UIPopup prefab 이름</param>
+        /// <returns>UIPopup</returns>
         public static UIPopup GetUIPopup(string name)
         {
             var uiPopup = UIPopupContainer.GetUIPopup(name);
@@ -67,37 +88,61 @@ namespace uinavigation.popup
             return uiPopup;
         }
 
+        /// <summary>
+        /// UIPopup을 즉시 Show합니다.
+        /// </summary>
         public void ShowImmediately()
         {
             Show(0).Forget();
         }
 
+        /// <summary>
+        /// UIPopup을 애니메이션에 따라 Show합니다.
+        /// </summary>
+        /// <returns>UniTask</returns>
         public async virtual UniTask Show()
         {
             _instance = this;
-            await PopUp(_animDuration);
+            await PopUp(_showAnimDuration);
         }
 
+        /// <summary>
+        /// UIPopup을 애니메이션에 따라 duration 동안, Show합니다.
+        /// </summary>
+        /// <param name="duration">애니메이션 시간</param>
+        /// <returns>UniTask</returns>
         public async virtual UniTask Show(float duration)
         {
             _instance = this;
             await PopUp(duration);
         }
 
+        /// <summary>
+        /// UIPopup을 즉시 Hide합니다.
+        /// </summary>
         public void HideImmediately()
         {
             Hide(0).Forget();
         }
 
+        /// <summary>
+        /// UIPopup을 애니메이션에 따라 Hide합니다.
+        /// </summary>
+        /// <returns>UniTask</returns>
         public async virtual UniTask Hide()
         {
             if (_instance != null)
             {
-                await _instance.Dismiss(_animDuration);
+                await _instance.Dismiss(_hideAnimDuration);
                 Destroy();
             }
         }
 
+        /// <summary>
+        /// UIPopup을 애니메이션에 따라 duration 동안, Hide합니다.
+        /// </summary>
+        /// <param name="duration"></param>
+        /// <returns></returns>
         public async virtual UniTask Hide(float duration)
         {
             if (_instance != null)
@@ -106,7 +151,10 @@ namespace uinavigation.popup
                 Destroy();
             }
         }
-
+        
+        /// <summary>
+        /// UIPopup Object를 제거합니다.
+        /// </summary>
         public static void Destroy()
         {
             if (_instance != null && _instance.VisibleState == VisibleState.Disappeared)
@@ -116,6 +164,9 @@ namespace uinavigation.popup
             }
         }
 
+        /// <summary>
+        /// UIPopup의 마지막 Button에 Hide Func을 할당합니다.
+        /// </summary>
         private void SetHideFuncToLastButton()
         {
             if (_setHideFuncToLastButton)
@@ -130,13 +181,22 @@ namespace uinavigation.popup
             }
         }
 
-        private void OnViewVisibleStateChanged(VisibleState visibleState)
+        /// <summary>
+        /// UIPopup의 VisibleState가 변할 때, 호출됩니다.
+        /// </summary>
+        /// <param name="visibleState"></param>
+        protected void OnViewVisibleStateChanged(VisibleState visibleState)
         {
             if (visibleState == VisibleState.Disappearing)
-                Dismiss(_animDuration).Forget();
+                Dismiss(_hideAnimDuration).Forget();
 
         }
-
+        
+        /// <summary>
+        /// UIPopup의 Popup 내부 동작입니다.
+        /// </summary>
+        /// <param name="duration">Animation 시간</param>
+        /// <returns>UniTask</returns>
         protected virtual async UniTask PopUp(float duration)
         {
             List<UniTask> appearAnimJobs = new List<UniTask>();
@@ -166,6 +226,11 @@ namespace uinavigation.popup
             this.VisibleState = VisibleState.Appeared;
         }
 
+        /// <summary>
+        /// UIPopup의 Dismiss 내부 동작입니다.
+        /// </summary>
+        /// <param name="duration">Animation 시간</param>
+        /// <returns>UniTask</returns>
         protected virtual async UniTask Dismiss(float duration)
         {
             List<UniTask> appearAnimJobs = new List<UniTask>();
@@ -195,6 +260,12 @@ namespace uinavigation.popup
             this.VisibleState = VisibleState.Disappeared;
         }
 
+        /// <summary>
+        /// 내부 동작 Popup이 실행되면서 처리될 애니메이션 Job을 추가합니다.
+        /// </summary>
+        /// <param name="jobs">WhenAll이 실행될 UniTask list</param>
+        /// <param name="duration">Animation 시간</param>
+        /// <param name="target">타겟 CanvasGroup</param>
         protected virtual void AddShowAnimationJobs(List<UniTask> jobs, float duration, CanvasGroup target)
         {
             if (target != null)
@@ -204,6 +275,12 @@ namespace uinavigation.popup
             }
         }
 
+        /// <summary>
+        /// 내부 동작 Dismiss가 실행되면서 처리될 애니메이션 Job을 추가합니다.
+        /// </summary>
+        /// <param name="jobs">WhenAll이 실행될 UniTask list</param>
+        /// <param name="duration">Animation 시간</param>
+        /// <param name="target">타겟 CanvasGroup</param>
         protected virtual void AddHideAnimationJobs(List<UniTask> jobs, float duration, CanvasGroup target)
         {
             if (target != null)

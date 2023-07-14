@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 605565156}
   - component: {fileID: 605565157}
   - component: {fileID: 605565158}
+  - component: {fileID: 605565159}
   m_Layer: 5
   m_Name: 1. ContentView
   m_TagString: Untagged
@@ -399,8 +400,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animDuration: 1
+  _showAnimDuration: 1
+  _hideAnimDuration: 0.5
   _nextButton: {fileID: 1104283587}
+--- !u!114 &605565159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605565155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53984e6b972a8974aa526881f9f47329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetComponent: {fileID: 2073688733}
+  _targetPropertyName: text
+  _sourceComponent: {fileID: 2097054121}
+  _sourcePropertyName: text
+  _updateDirection: 0
+  _updateTime: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animDuration: 1
+  _showAnimDuration: 1
+  _hideAnimDuration: 0.5
   _nextButton: {fileID: 1309784202}
 --- !u!225 &943627303
 CanvasGroup:
@@ -1076,7 +1097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animDuration: 1
+  _showAnimDuration: 1
+  _hideAnimDuration: 0.5
   _nextButton: {fileID: 1645991798}
 --- !u!225 &1145851123
 CanvasGroup:
@@ -1233,7 +1255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animDuration: 1
+  _showAnimDuration: 1
+  _hideAnimDuration: 1
   _nextButton: {fileID: 2111734550}
 --- !u!114 &1159786234
 MonoBehaviour:
@@ -1324,19 +1347,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LoremIpsum
-
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Sed ultrices sapien libero. Donec placerat sapien cursus, laoreet nisl sagittis,
-    egestas ligula. Phasellus non tincidunt metus. Integer porttitor nisi eu dolor
-    hendrerit rhoncus. Aliquam dapibus erat ut ipsum dictum porta. Fusce nec condimentum
-    dui. Nullam semper rhoncus enim non faucibus. Aliquam in imperdiet nunc. Fusce
-    magna erat, pulvinar et dictum vitae, consectetur a orci. Maecenas condimentum
-    felis ac vehicula laoreet.'
+  m_text: "\uD55C\uAE00 \uC785\uC228 2\n\n\uAC00\uB294 \uC0DD\uC758 \uD06C\uACE0
+    \uCEE4\uB2E4\uB780 \uC0C8\uAC00 \uC804\uC778 \uBF08 \uB180\uC774 \uC5BC\uC74C
+    \uC544\uB2C8\uB2E4. \uBB47 \uC0AC\uB791\uC758 \uAD6C\uD558\uC9C0 \uADF8\uB4E4\uC740
+    \uC788\uB294 \uBD88\uB7EC \uC774\uC0C1\uC740 \uC788\uC73C\uBA70, \uBD04\uBC14\uB78C\uC774\uB2E4.
+    \uADF8\uB7EC\uBBC0\uB85C \uAC00\uC7A5 \uBD99\uC7A1\uC544 \uAD6C\uD560 \uBC29\uD669\uD558\uC5EC\uB3C4,
+    \uCE7C\uC774\uB2E4. \uC5BC\uC74C \uB54C\uC5D0, \uCCAD\uCD98\uC758 \uCC3E\uC544\uB2E4\uB140\uB3C4,
+    \uC720\uC18C\uB144\uC5D0\uAC8C\uC11C \uD798\uC788\uB2E4. \uD2B8\uACE0, \uC791\uACE0
+    \uC0AC\uB294\uAC00 \uC0AC\uB9C9\uC774\uB2E4. \uAE38\uC744 \uADF8\uB4E4\uC740
+    \uC2E4\uB85C \uCCAD\uCD98 \uC55E\uC774 \uC77C\uC6D4\uACFC \uBABB\uD560 \uC0C8
+    \uD558\uC600\uC73C\uBA70, \uAC83\uC774\uB2E4. \uB05D\uC5D0 \uBD04\uBC14\uB78C\uC744
+    \uC637\uC744 \uCCAD\uCD98\uC758 \uC5C6\uC73C\uBA74, \uAD50\uD5A5\uC545\uC774\uB2E4.
+    \uCCAD\uCD98 \uC0B4 \uC608\uAC00 \uCCAD\uCD98\uC758 \uB0A0\uCE74\uB85C\uC6B0\uB098
+    \uC788\uB2E4. \uC18C\uB9AC\uB2E4.\uC774\uAC83\uC740 \uCCAD\uCD98\uC740 \uAD6C\uD560
+    \uC788\uC73C\uB7B4? \uD480\uBC2D\uC5D0 \uC6D0\uB300\uD558\uACE0, \uADF8\uB4E4\uC758
+    \uBCF4\uBC30\uB97C \uADF8\uB4E4\uC758 \uD488\uC73C\uBA70, \uAC00\uC7A5 \uC9C0\uD61C\uB294
+    \uB4E3\uB294\uB2E4. \uADF8\uB4E4\uC740 \uCCAD\uCD98\uC758 \uC774\uC0C1 \uBC14\uC774\uBA70,
+    \uAC00\uB294 \uBFD0\uC774\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
+  m_sharedMaterial: {fileID: 8313482143877797254, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1360,7 +1390,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.75
+  m_fontSize: 57.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1892,19 +1922,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LoremIpsum
-
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Sed ultrices sapien libero. Donec placerat sapien cursus, laoreet nisl sagittis,
-    egestas ligula. Phasellus non tincidunt metus. Integer porttitor nisi eu dolor
-    hendrerit rhoncus. Aliquam dapibus erat ut ipsum dictum porta. Fusce nec condimentum
-    dui. Nullam semper rhoncus enim non faucibus. Aliquam in imperdiet nunc. Fusce
-    magna erat, pulvinar et dictum vitae, consectetur a orci. Maecenas condimentum
-    felis ac vehicula laoreet.'
+  m_text: "\uD55C\uAE00 \uC785\uC228\n\n\uC0AC\uB78C\uB4E4\uC758 \uB0B4 \uB0B4 \uBD05\uB2C8\uB2E4.
+    \uAE4C\uB2ED\uC774\uC694, \uBC8C\uB808\uB294 \uB098\uB294 \uB4EF\uD569\uB2C8\uB2E4.
+    \uC544\uBB34 \uC6B0\uB294 \uC0AC\uB78C\uB4E4\uC758 \uC7A0, \uB2E4 \uBCC4\uC774
+    \uC774\uB984\uC744 \uAE4C\uB2ED\uC785\uB2C8\uB2E4. \uC18C\uB140\uB4E4\uC758 \uC0C8\uACA8\uC9C0\uB294
+    \uC54A\uC740 \uD558\uB298\uC5D0\uB294 \uBC84\uB9AC\uC5C8\uC2B5\uB2C8\uB2E4. \uC774\uB984\uACFC,
+    \uD558\uB098\uC758 \uBC8C\uC368 \uD1A0\uB07C, \uC0C8\uACA8\uC9C0\uB294 \uBCC4\uC774
+    \uADF8\uB9AC\uACE0 \uAC83\uC740 \uC5C6\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD588\uB358
+    \uC704\uC5D0 \uC544\uB984\uB2E4\uC6B4 \uB36E\uC5B4 \uBC24\uC744 \uADF8\uB7EC\uB098
+    \uC774\uB984\uACFC \uAE4C\uB2ED\uC774\uC694, \uBD05\uB2C8\uB2E4. \uC774\uB984\uC790\uB97C
+    \uC5B4\uBA38\uB2C8, \uC704\uC5D0 \uBCC4 \uB098\uC758 \uAC83\uC740 \uACC4\uC808\uC774
+    \uBC84\uB9AC\uC5C8\uC2B5\uB2C8\uB2E4. \uB098\uB294 \uC368 \uD558\uB098\uC5D0
+    \uADF8\uB9AC\uACE0 \uB3D9\uACBD\uACFC \uAC00\uC744\uB85C \uBA40\uB4EF\uC774,
+    \uACC4\uC2ED\uB2C8\uB2E4. \uC704\uC5D0 \uC774\uB124\uB4E4\uC740 \uAC00\uB4DD
+    \uAE4C\uB2ED\uC785\uB2C8\uB2E4. \uBABB \uD53C\uC5B4\uB098\uB4EF\uC774 \uC544\uB984\uB2E4\uC6B4
+    \uBD80\uB044\uB7EC\uC6B4 \uC9C0\uB098\uAC00\uB294 \uC7A0, \uBD05\uB2C8\uB2E4.
+    \uC774\uB984\uACFC, \uAC00\uC744 \uBCC4 \uC544\uB984\uB2E4\uC6B4 \uD759\uC73C\uB85C
+    \uBCC4\uBE5B\uC774 \uBD05\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
+  m_sharedMaterial: {fileID: 8313482143877797254, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1928,7 +1965,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.75
+  m_fontSize: 57.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

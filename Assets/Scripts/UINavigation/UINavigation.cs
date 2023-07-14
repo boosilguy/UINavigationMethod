@@ -8,13 +8,26 @@ using uinavigation.uiview;
 
 namespace uinavigation
 {
+    /// <summary>
+    /// UIView를 관리하는 Navigation 클래스
+    /// </summary>
     public partial class UINavigation
     {
         private static UINavigation _instance;
-        private Queue<(UIView hide, UIView show)> _uiViewTransQueue;
-        private Stack<UIView> _views;
-        private UIView _currentView;
 
+        /// <summary>
+        /// UIView 전환 애니메이션을 관리하기 위한 Queue
+        /// </summary>
+        private Queue<(UIView hide, UIView show)> _uiViewTransQueue;
+        /// <summary>
+        /// UIView History를 관리하기 위한 Stack
+        /// </summary>
+        private Stack<UIView> _views;
+        
+        private UIView _currentView;
+        /// <summary>
+        /// 현재 활성화된 UIView
+        /// </summary>
         public static UIView CurrentView => _instance?._currentView;
 
         private UINavigation()
@@ -34,6 +47,11 @@ namespace uinavigation
                 });
         }
 
+        /// <summary>
+        /// Hide 대상, Show 대상의 UIView를 전환하는 함수
+        /// </summary>
+        /// <param name="hide">Hide target</param>
+        /// <param name="show">Show target</param>
         private async void TransUIView(UIView hide, UIView show)
         {
             if (hide != null) await hide.Hide();
@@ -42,6 +60,11 @@ namespace uinavigation
 
         }
 
+        /// <summary>
+        /// UIView를 Push합니다.
+        /// </summary>
+        /// <param name="viewName">이름</param>
+        /// <returns>UIView</returns>
         public static UIView PushUIView(string viewName)
         {
             if (_instance == null)
@@ -60,6 +83,11 @@ namespace uinavigation
             return show;
         }
 
+        /// <summary>
+        /// UIView를 비동기로 Push합니다.
+        /// </summary>
+        /// <param name="viewName">이름</param>
+        /// <returns>UIView</returns>
         public static async Task<UIView> PushUIViewAsync(string viewName)
         {
             if (_instance == null)
@@ -77,6 +105,10 @@ namespace uinavigation
             return show;
         }
 
+        /// <summary>
+        /// UIView를 Pop합니다.
+        /// </summary>
+        /// <returns>UIView</returns>
         public static UIView PopUIView()
         {
             if (_instance == null)
@@ -92,6 +124,10 @@ namespace uinavigation
             return hide;
         }
 
+        /// <summary>
+        /// UIView를 비동기로 Pop합니다.
+        /// </summary>
+        /// <returns>UIView</returns>
         public static async Task<UIView> PopUIViewAsync()
         {
             if (_instance == null)
@@ -107,6 +143,11 @@ namespace uinavigation
             return hide;
         }
 
+        /// <summary>
+        /// 특정 UIView 직전까지, 모든 UIView를 Pop합니다.
+        /// </summary>
+        /// <param name="viewName">이름</param>
+        /// <returns>UIView</returns>
         public static UIView PopToUIView(string viewName)
         {
             if (_instance == null)
@@ -143,6 +184,10 @@ namespace uinavigation
             return hide;
         }
 
+        /// <summary>
+        /// 가장 마지막에 Push한 UIView를 제외하고, 모두 Pop합니다.
+        /// </summary>
+        /// <returns>UIView</returns>
         public static UIView PopToRoot()
         {
             if (_instance == null)
@@ -169,7 +214,7 @@ namespace uinavigation
             return hide;
         }
 
-        public static void Dispose()
+        internal static void Dispose()
         {
             _instance = null;
         }

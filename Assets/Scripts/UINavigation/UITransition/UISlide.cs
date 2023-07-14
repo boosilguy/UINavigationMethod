@@ -8,6 +8,9 @@ using UnityEngine.UIElements;
 
 namespace uinavigation
 {
+    /// <summary>
+    /// UI Slide 애니메이션을 적용하는 UITransition
+    /// </summary>
     public class UISlide : UITransitionBase
     {
         private Tween tween;

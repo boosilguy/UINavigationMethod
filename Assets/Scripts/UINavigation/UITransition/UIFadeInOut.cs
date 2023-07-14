@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace uinavigation
 {
+    /// <summary>
+    /// UI Fade In & Out 애니메이션을 적용하는 UITransition
+    /// </summary>
     public class UIFadeInOut : UITransitionBase
     {
         private Tween tween;

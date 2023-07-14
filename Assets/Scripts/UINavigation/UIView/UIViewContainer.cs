@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace uinavigation.uiview
 {
+    /// <summary>
+    /// UIView를 관리하는 컨테이너
+    /// </summary>
     public class UIViewContainer
     {
         private static UIViewContainer _instance = null;
@@ -17,6 +20,11 @@ namespace uinavigation.uiview
             _uiViewDic = GameObject.FindObjectsOfType<UIView>(true).ToDictionary(view => view.name, view => view);
         }
 
+        /// <summary>
+        /// UIView를 컨테이너로부터 찾아와 반환합니다.
+        /// </summary>
+        /// <param name="name">UIView name</param>
+        /// <returns>UIView</returns>
         public static UIView GetUIView(string name)
         {
             if (_instance == null)
@@ -29,7 +37,7 @@ namespace uinavigation.uiview
             return null;
         }
 
-        public static void Dispose()
+        internal static void Dispose()
         {
             if (_instance != null && _instance._uiViewDic != null)
             {

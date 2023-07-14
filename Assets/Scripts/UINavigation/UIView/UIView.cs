@@ -8,9 +8,11 @@ namespace uinavigation.uiview
 {
     public class UIView : MonoBehaviour
     {
-        [SerializeField] float _animDuration;
+        [SerializeField] float _showAnimDuration;
+        [SerializeField] float _hideAnimDuration;
 
         protected List<UITransitionBase> _uiTransitions;
+
         /// <summary>
         /// UIView의 화면 전환 애니메이션을 담은 UITransitionBase 리스트
         /// </summary>
@@ -75,43 +77,63 @@ namespace uinavigation.uiview
             }
         }
 
-        public virtual async UniTask Show()
+        /// <summary>
+        /// UIView를 Show합니다.
+        /// </summary>
+        /// <returns>UniTask</returns>
+        internal protected virtual async UniTask Show()
         {
             await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate);
             if (UITransitions != null)
             {
                 List<UniTask> tasks = new List<UniTask>();
-                UITransitions.ForEach(transition => tasks.Add(transition.Show(_animDuration)));
+                UITransitions.ForEach(transition => tasks.Add(transition.Show(_showAnimDuration)));
                 await UniTask.WhenAll(tasks);
             }
         }
 
-        public virtual async UniTask Hide()
+        /// <summary>
+        /// UIView를 Hide합니다.
+        /// </summary>
+        /// <returns>UniTask</returns>
+        internal protected virtual async UniTask Hide()
         {
             if (UITransitions != null)
             {
                 List<UniTask> tasks = new List<UniTask>();
-                UITransitions.ForEach(transition => tasks.Add(transition.Hide(_animDuration)));
+                UITransitions.ForEach(transition => tasks.Add(transition.Hide(_hideAnimDuration)));
                 await UniTask.WhenAll(tasks);
             }
         }
 
-        protected virtual void OnShow()
+        /// <summary>
+        /// UIView가 Show되었을 때 호출되는 메서드입니다.
+        /// </summary>
+        internal protected virtual void OnShow()
         {
             this.CanvasGroup.interactable = true;
         }
 
-        protected virtual void OnShowing()
+        /// <summary>
+        /// UIView가 Show되고 있을 때 호출되는 메서드입니다.
+        /// </summary>
+        internal protected virtual void OnShowing()
         {
             this.CanvasGroup.interactable = true;
         }
 
-        protected virtual void OnHide()
+        /// <summary>
+        /// UIView가 Hide되었을 때 호출되는 메서드입니다.
+        /// </summary>
+        internal protected virtual void OnHide()
         {
             this.CanvasGroup.interactable = false;
         }
 
-        protected virtual void OnHiding()
+        /// <summary>
+        /// UIView가 Hide되고 있을 때 호출되는 메서드입니다.
+        /// </summary>
+        internal protected virtual void OnHiding()
         {
             this.CanvasGroup.interactable = false;
         }
