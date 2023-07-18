@@ -10,42 +10,62 @@ namespace uidatabind
     [CustomEditor(typeof(BindProperty))]
     public class BindPropertyEditor : Editor
     {
+        private Texture2D _upwardArrow;
+        private Texture2D _downwardArrow;
+        private GUIStyle _arrowStyle;
+        
+        private void OnEnable()
+        {
+            _upwardArrow = Resources.Load<Texture2D>(UIDataBind.EDITOR_UPWARD_ARROW);
+            _downwardArrow = Resources.Load<Texture2D>(UIDataBind.EDITOR_DOWNWARD_ARROW);
+
+            _arrowStyle = new GUIStyle()
+            {
+                alignment = TextAnchor.MiddleCenter,
+                stretchWidth = true,
+                fixedHeight = 25,
+                margin = new RectOffset(0, 0, 15, 15)
+            };
+        }
+
         public override void OnInspectorGUI()
         {
             BindProperty bindProperty = (BindProperty)serializedObject.targetObject;
+            SerializedProperty updateDirectionProperty = serializedObject.FindProperty("_updateDirection");
+            SerializedProperty updateTimeProperty = serializedObject.FindProperty("_updateTime");
+            SerializedProperty sourceProperty = serializedObject.FindProperty("_sourceComponent");
+            SerializedProperty targetProperty = serializedObject.FindProperty("_targetComponent");
 
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_updateDirection"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_updateTime"));
+            EditorGUILayout.PropertyField(updateDirectionProperty);
+            EditorGUILayout.PropertyField(updateTimeProperty);
 
-            SerializedProperty source = serializedObject.FindProperty("_sourceComponent");
-            SerializedProperty target = serializedObject.FindProperty("_targetComponent");
-
-            EditorGUILayout.PropertyField(source);
-            if (bindProperty.SourceComponent)
+            EditorGUILayout.BeginVertical("helpbox");
             {
-                var propertyDesc = PropertiesInComponent(bindProperty.SourceComponent, bindProperty.SourcePropertyName);
-                if (propertyDesc != null)
+                EditorGUILayout.PropertyField(sourceProperty);
+                if (bindProperty.SourceComponent)
                 {
-                    bindProperty.SourceComponent = propertyDesc.Component;
-                    bindProperty.SourcePropertyName = propertyDesc.Name;
+                    var propertyDesc = PropertiesInComponent(bindProperty.SourceComponent, bindProperty.SourcePropertyName);
+                    if (propertyDesc != null)
+                    {
+                        bindProperty.SourceComponent = propertyDesc.Component;
+                        bindProperty.SourcePropertyName = propertyDesc.Name;
+                    }
+                }
+
+                DrawUpdateDirection((UpdateDirection)updateDirectionProperty.enumValueIndex);
+
+                EditorGUILayout.PropertyField(targetProperty);
+                if (bindProperty.TargetComponent)
+                {
+                    var propertyDesc = PropertiesInComponent(bindProperty.TargetComponent, bindProperty.TargetPropertyName);
+                    if (propertyDesc != null)
+                    {
+                        bindProperty.TargetComponent = propertyDesc.Component;
+                        bindProperty.TargetPropertyName = propertyDesc.Name;
+                    }
                 }
             }
-
-            if ((UpdateDirection)(serializedObject.FindProperty("_updateDirection").enumValueIndex) == UpdateDirection.Forward)
-                EditorGUILayout.LabelField("↓", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter});
-            else
-                EditorGUILayout.LabelField("↑", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter });
-
-            EditorGUILayout.PropertyField(target);
-            if (bindProperty.TargetComponent)
-            {
-                var propertyDesc = PropertiesInComponent(bindProperty.TargetComponent, bindProperty.TargetPropertyName);
-                if (propertyDesc != null)
-                {
-                    bindProperty.TargetComponent = propertyDesc.Component;
-                    bindProperty.TargetPropertyName = propertyDesc.Name;
-                }
-            }
+            EditorGUILayout.EndVertical();
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -73,6 +93,14 @@ namespace uidatabind
                 return propertyDescriptions[newSelected];
             
             return null;
+        }
+
+        private void DrawUpdateDirection(UpdateDirection selected)
+        {
+            if (selected == UpdateDirection.Forward)
+                GUILayout.Label(_downwardArrow, _arrowStyle);
+            else
+                GUILayout.Label(_upwardArrow, _arrowStyle);
         }
 
         private class PropertyDescription
