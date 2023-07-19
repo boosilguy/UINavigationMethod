@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static Unity.VisualScripting.Metadata;
 
 namespace uidatabind
 {
@@ -20,6 +17,7 @@ namespace uidatabind
                     _dataContext = new DataContext();
                     _dataContext.contextChanged += ChangeAllBindData;
                 }
+                _dataContext[key] = value;
             }
         }
 
@@ -34,7 +32,7 @@ namespace uidatabind
 
             children.ForEach(child =>
             {
-                if (string.IsNullOrEmpty(child.key) || child.key == key)
+                if (string.IsNullOrEmpty(child.Key) || child.Key == key)
                     child.Bind(_dataContext);
             });
         }

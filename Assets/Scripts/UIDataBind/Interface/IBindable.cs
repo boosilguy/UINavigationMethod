@@ -2,7 +2,7 @@ namespace uidatabind
 {
     public interface IBindable
     {
-        string key { get; }
+        string Key { get; }
         void Bind(DataContext context);
     }
 }
