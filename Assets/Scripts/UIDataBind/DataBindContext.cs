@@ -25,7 +25,7 @@ namespace uidatabind
 
         public void ChangeAllBindData(string key)
         {
-            var children = GetComponentsInChildren<IBindable>().ToList();
+            var children = GetComponentsInChildren<IBindable>(true).ToList();
 
             if (children == null)
                 return;
@@ -39,7 +39,7 @@ namespace uidatabind
 
         public void BindAll()
         {
-            var children = GetComponentsInChildren<IBindable>().ToList();
+            var children = GetComponentsInChildren<IBindable>(true).ToList();
             
             if (children == null)
                 return;

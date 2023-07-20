@@ -14,7 +14,7 @@ namespace uidatabind
         {
             DataBindContext context = (DataBindContext)target;
 
-            var children = context.GetComponentsInChildren<IBindable>().ToList();
+            var children = context.GetComponentsInChildren<IBindable>(true).ToList();
 
             EditorGUILayout.LabelField(UIDataBind.EDITOR_CONTEXT_INFO);
             EditorGUILayout.BeginVertical("Helpbox");
