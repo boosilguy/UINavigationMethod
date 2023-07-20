@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace example.uidatabind
+namespace example
 {
     public class BasicExampleDataBind : MonoBehaviour
     {
         [Header("UI Data Binding Example")]
         [SerializeField] private Sprite _bindSprite;
-        [SerializeField] private string _bindText;
+        [SerializeField] [TextArea] private string _bindText;
 
         public Sprite BindSprite => _bindSprite;
         public string BindText => _bindText;

@@ -12,7 +12,7 @@ namespace uidatabind
 
         public bool ContainsKey(string key) => _activeBinds.ContainsKey(key);
 
-        public object this[string key]
+        internal object this[string key]
         {
             get => _activeBinds[key];
             set

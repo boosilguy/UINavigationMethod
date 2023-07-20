@@ -7,7 +7,7 @@ namespace uidatabind
     {
         private DataContext _dataContext;
 
-        public object this[string key]
+        private object this[string key]
         {
             get => _dataContext[key];
             set
@@ -48,6 +48,11 @@ namespace uidatabind
                 _dataContext = new DataContext();
 
             children.ForEach(child => child.Bind(_dataContext));
+        }
+
+        public void SetValue(string key, object value)
+        {
+            this[key] = value;
         }
     }
 }

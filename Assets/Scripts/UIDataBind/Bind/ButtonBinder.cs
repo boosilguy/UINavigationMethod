@@ -13,10 +13,23 @@ namespace uidatabind
 
         public string Key => _key;
 
+        private UnityAction prevAction;
+
         public void Bind(DataContext context)
         {
             if (context.ContainsKey(_key))
-                _button.onClick.AddListener((UnityAction)context[_key]);
+            {
+                if (prevAction != null)
+                    _button.onClick.RemoveListener(prevAction);
+
+                prevAction = ((UnityAction)context[_key]);
+
+                _button.onClick.AddListener(() =>
+                {
+                    prevAction.Invoke();
+                });
+            }
+                
         }
     }
 }

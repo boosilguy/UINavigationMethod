@@ -30,7 +30,7 @@ namespace uidatabind
 
         public override void OnInspectorGUI()
         {
-            BindProperty bindProperty = (BindProperty)serializedObject.targetObject;
+            BindProperty bindProperty = (BindProperty)target;
             SerializedProperty updateDirectionProperty = serializedObject.FindProperty("_updateDirection");
             SerializedProperty updateTimeProperty = serializedObject.FindProperty("_updateTime");
             SerializedProperty sourceProperty = serializedObject.FindProperty("_sourceComponent");

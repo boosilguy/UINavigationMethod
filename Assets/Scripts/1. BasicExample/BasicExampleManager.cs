@@ -2,9 +2,9 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using uinavigation;
 using uinavigation.popup;
-using example.uidatabind;
+using UnityEngine.Events;
 
-namespace example.uinavigation
+namespace example
 {
     public class BasicExampleManager : MonoBehaviour
     {
@@ -51,9 +51,9 @@ namespace example.uinavigation
 
         private void BindExamples()
         {
-            _bindContext["Txt_LastContentView"] = _dataBindExample.BindText;
-            _bindContext["Btn_LastContentView"] = _dataBindExample.OnClickBindExampleButton;
-            _bindContext["Img_LastContentView"] = _dataBindExample.BindSprite;
+            _bindContext.SetValue("Txt_LastContentView", _dataBindExample.BindText);
+            _bindContext.SetValue("Btn_LastContentView", new UnityAction(() => _dataBindExample.OnClickBindExampleButton()));
+            _bindContext.SetValue("Img_LastContentView", _dataBindExample.BindSprite);
         }
 
         public void OnClickNextButton(GameObject guideViewGameObject)

@@ -10,23 +10,36 @@ namespace uidatabind
     [RequireComponent(typeof (TextMeshProUGUI))]
     public class TextMeshProBinder : MonoBehaviour, IBindable
     {
-        private TextMeshProUGUI _textComponent;
-        private string _text;
+        private TextMeshProUGUI textComponent => GetComponent<TextMeshProUGUI>();
+
+        private string text => textComponent.text;
 
         public string Key
         {
             get => null;
         }
 
+        public string PreviewKey
+        {
+            get
+            {
+                string result = null;
+                Regex.Matches(text, UIDataBind.BIND_REGEX).ToList().ForEach(match =>
+                {
+                    var key = match.Value.Substring(2, match.Value.Length - 4).Split(':').FirstOrDefault();
+                    if (!string.IsNullOrEmpty(key))
+                        result = key;
+                });
+                return result;
+            }
+        }
+
         public void Bind(DataContext context)
         {
-            if (_text == null)
-            {
-                _textComponent = GetComponent<TextMeshProUGUI>();
-                _text = _textComponent.text;
-            }
+            if (!IsRegistered(Regex.Matches(text, UIDataBind.BIND_REGEX), context))
+                return;
 
-            _textComponent.text = Regex.Replace(_text, UIDataBind.BIND_REGEX, match =>
+            textComponent.text = Regex.Replace(text, UIDataBind.BIND_REGEX, match =>
             {
                 var splited = match.Value.Substring(2, match.Value.Length - 4).Split(':');
                 var key = splited.FirstOrDefault();
