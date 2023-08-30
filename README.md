@@ -78,7 +78,7 @@ UIPopup에는 크게 Popup content 영역과 Background 영역으로 나눠 구�
 
 지정된 Popup content 영역과 Background에는 UIView와 동일하게 ``UITransitionBase``가 필요하며, 없다면 런타임에 동적으로 UITransitionFadeInOut이 부착됨.
 
-![image](./img/readme/uinavigation_00.png)
+![image](./img/Readme/uinavigation_00.png)
 
 UIPopup 내, **UI Components** 항목의 데이터 (기본 Text, Button)를 Binding 할
 수 있도록 기능을 제공. 제공되는 확장 메소드를 통해, 아래와 같이 Text 내용과 Button에 이벤트를 제공할 수 있음.
