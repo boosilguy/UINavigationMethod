@@ -396,11 +396,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 605565155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ae50ff748349114a90c73a50bc3a365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _showAnimDuration: 1
-  _hideAnimDuration: 0.5
+  _hideAnimDuration: 1
   _nextButton: {fileID: 1104283587}
 --- !u!1 &705507993
 GameObject:
@@ -717,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943627301}
   - component: {fileID: 943627303}
-  - component: {fileID: 943627302}
+  - component: {fileID: 943627304}
   m_Layer: 5
   m_Name: 2. ContentView
   m_TagString: Untagged
@@ -748,21 +748,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3977.75, y: 1125.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &943627302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943627300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showAnimDuration: 1
-  _hideAnimDuration: 0.5
-  _nextButton: {fileID: 1309784202}
 --- !u!225 &943627303
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -775,6 +760,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &943627304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943627300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae50ff748349114a90c73a50bc3a365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showAnimDuration: 1
+  _hideAnimDuration: 1
+  _nextButton: {fileID: 1309784202}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145851121}
   - component: {fileID: 1145851123}
-  - component: {fileID: 1145851122}
+  - component: {fileID: 1145851124}
   m_Layer: 5
   m_Name: 3. ContentView
   m_TagString: Untagged
@@ -1022,21 +1022,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5981, y: 1125.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1145851122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145851120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showAnimDuration: 1
-  _hideAnimDuration: 0.5
-  _nextButton: {fileID: 1645991798}
 --- !u!225 &1145851123
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1049,6 +1034,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1145851124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145851120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae50ff748349114a90c73a50bc3a365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showAnimDuration: 1
+  _hideAnimDuration: 1
+  _nextButton: {fileID: 1645991798}
 --- !u!1 &1149865100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1159786230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185d045759a8fd945bfd5d6d974f3f93, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ae50ff748349114a90c73a50bc3a365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _showAnimDuration: 1
@@ -1302,8 +1302,8 @@ MonoBehaviour:
     \uB4E3\uB294\uB2E4. \uADF8\uB4E4\uC740 \uCCAD\uCD98\uC758 \uC774\uC0C1 \uBC14\uC774\uBA70,
     \uAC00\uB294 \uBFD0\uC774\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
-  m_sharedMaterial: {fileID: 8313482143877797254, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd7a96df8707e2043b8bef81c1488b12, type: 2}
+  m_sharedMaterial: {fileID: 8313482143877797254, guid: dd7a96df8707e2043b8bef81c1488b12, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314895230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1955c926cd1eef648b4b2d37696184f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cb35ce257fa80e4290801976d09c35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1329147651
@@ -1890,8 +1890,8 @@ MonoBehaviour:
     \uC774\uB984\uACFC, \uAC00\uC744 \uBCC4 \uC544\uB984\uB2E4\uC6B4 \uD759\uC73C\uB85C
     \uBCC4\uBE5B\uC774 \uBD05\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
-  m_sharedMaterial: {fileID: 8313482143877797254, guid: f4e09c17c9e32cb498964a8157d09bcb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd7a96df8707e2043b8bef81c1488b12, type: 2}
+  m_sharedMaterial: {fileID: 8313482143877797254, guid: dd7a96df8707e2043b8bef81c1488b12, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiPopupList:
-  - {fileID: 7053443814445490068, guid: 76635746bd18f7943ac867d662618ed1, type: 3}
+  - {fileID: 7053443814445490068, guid: 4f30b41b3d10d944282f28e87a0a9d03, type: 3}
 --- !u!114 &1996638742
 MonoBehaviour:
   m_ObjectHideFlags: 0
