@@ -78,7 +78,7 @@ UIPopup에는 크게 Popup content 영역과 Background 영역으로 나눠 구�
 
 지정된 Popup content 영역과 Background에는 UIView와 동일하게 ``UITransitionBase``가 필요하며, 없다면 런타임에 동적으로 UITransitionFadeInOut이 부착됨.
 
-![image](./img/Readme/uinavigation_00.png)
+![image](./Packages/UINavigation/Resources/Images/Readme/uinavigation_00.png)
 
 UIPopup 내, **UI Components** 항목의 데이터 (기본 Text, Button)를 Binding 할
 수 있도록 기능을 제공. 제공되는 확장 메소드를 통해, 아래와 같이 Text 내용과 Button에 이벤트를 제공할 수 있음.
@@ -153,3 +153,5 @@ public class ExampleTransition : UITransitionBase
 *UINavigationTestScene 참고*
 
 - UINavigationTestScene와 같이, UIView를 Prefab으로 만들 필요는 없음. UINavigation은 Scene내 UIView만 수집함 (디자인과 실제 개발을 분리하기 위해 Prefab화).
+
+![image](./Packages/UINavigation/Resources/Images/Readme/uinavigationExample_00.gif)
