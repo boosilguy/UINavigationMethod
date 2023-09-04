@@ -153,3 +153,5 @@ public class ExampleTransition : UITransitionBase
 *UINavigationTestScene 참고*
 
 - UINavigationTestScene와 같이, UIView를 Prefab으로 만들 필요는 없음. UINavigation은 Scene내 UIView만 수집함 (디자인과 실제 개발을 분리하기 위해 Prefab화).
+
+![image](./Resources/Images/Readme/uinavigationExample_00.gif)
